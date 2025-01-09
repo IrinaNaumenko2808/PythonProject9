@@ -1,0 +1,15 @@
+import openai
+
+# Замените "ваш_ключ" на ваш действующий API-ключ OpenAI
+openai.api_key = "ваш_ключ"
+
+try:
+    # Простой запрос для получения списка доступных моделей
+    response = openai.Model.list()
+    print("API-ключ работает. Доступные модели:")
+    for model in response['data']:
+        print(f"- {model['id']}")
+except openai.error.AuthenticationError:
+    print("Ошибка аутентификации. Проверьте правильность API-ключа.")
+except openai.error.OpenAIError as e:
+    print(f"Произошла ошибка при подключении к OpenAI: {e}")
